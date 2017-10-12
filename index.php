@@ -50,14 +50,28 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
+            $dbname = "Tickets";
 
-            $conn = new mysqli($servername, $username, $password);
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+            $sql = "SELECT name FROM Tickets";
+            $result = $conn->query($sql);
 
 
-            $selected = mysql_select_db("test",$dbhandle)
-            or die("Could not select examples");
 
-            php?>
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo  "Name: " . $row["name"]."<br>";
+                }
+            } else {
+                echo "0 results";
+            }
+            $conn->close();
+
+
+
+            ?>
 
 
 
