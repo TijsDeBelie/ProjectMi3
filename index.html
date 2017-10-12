@@ -39,7 +39,33 @@
     <body>
         <div class="wrapper">
             <div class="sammy"><img src="https://assets.digitalocean.com/other_images/sammy.png"/></div>
-            <div class="message">Hello</div>
+            <div class="message">Select a month and a year to display your events</div>
+            <form>
+                month and year:
+                <input type="month" name="bdaymonth">
+            </form>
+
+            <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+
+
+                $conn = new mysqli($servername, $username, $password);
+
+
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                    }
+                echo "Connected successfully";
+
+                $selected = mysql_select_db("examples",$dbhandle)
+                or die("Could not select examples");
+
+            ?>
+
+
+
         </div>
     </body>
 </html>
