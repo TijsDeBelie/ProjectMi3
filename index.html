@@ -42,27 +42,22 @@
             <div class="message">Select a month and a year to display your events</div>
             <form>
                 month and year:
-                <input type="month" name="bdaymonth">
+                <input type="month" name="month">
             </form>
 
+
             <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+
+            $conn = new mysqli($servername, $username, $password);
 
 
-                $conn = new mysqli($servername, $username, $password);
+            $selected = mysql_select_db("test",$dbhandle)
+            or die("Could not select examples");
 
-
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                    }
-                echo "Connected successfully";
-
-                $selected = mysql_select_db("examples",$dbhandle)
-                or die("Could not select examples");
-
-            ?>
+            php?>
 
 
 
