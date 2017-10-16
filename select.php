@@ -1,14 +1,6 @@
 <?php
 
 
-
-
-$date = $_REQUEST['userinput'];
-
-echo $date;
-
-/* Attempt MySQL server connection. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
 $link = mysqli_connect("localhost", "remote", "LXTNrdMSO75MvSl@xG2%58D!QaanY#", "Tickets");
 
 // Check connection

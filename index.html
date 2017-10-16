@@ -4,7 +4,7 @@
 <head>
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="Expires" CONTENT="-1">
-    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
     <script src="search.js"></script>
     <style type="text/css">
         body {
@@ -49,7 +49,7 @@
     <div class="message">Select a month and a year to display your events</div>
     <form method="post"> month and year:
         <input type="month" id="myMonth" name="userinput" value="1997-11">
-        <input type="submit">
+        <button class="submit" onclick="submit()">Submit</button>
     </form>
 
     <div id="adiv"></div>
