@@ -12,13 +12,17 @@ function bevestig() {
 
 $(document).ready(function(){
     $(".submit").click(function(){
-        var userinput = $("#userinput").value;
+        var userinput = $("#myMonth").val();
+        var year = userinput.substring(0, 4);
+        var month = userinput.substring(5);
 
-        $.ajax({
-            url:"http://95.85.35.29/select.php",
-            data: {status: userinput},
-            success:function(result){
+        $.post({
+            url:"select.php",
+            data: {year: year, month: month},
+            success:function(result,e){
+                alert(result + e);
                 $("#adiv").html(result);
+
             }
         });
     });
