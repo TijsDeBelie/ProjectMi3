@@ -1,4 +1,7 @@
 <?php
+$userinput = $_POST["userinput"];
+
+
 
 
 $link = mysqli_connect("localhost", "remote", "LXTNrdMSO75MvSl@xG2%58D!QaanY#", "Tickets");
@@ -18,6 +21,7 @@ if($result = mysqli_query($link, $sql)){
         echo "<th>naam</th>";
         echo "<th>datum</th>";
 
+
         echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
@@ -29,7 +33,7 @@ if($result = mysqli_query($link, $sql)){
         }
         echo "</table>";
         // Free result set
-        mysqli_free_result($result);
+        //mysqli_free_result($result);
     } else{
         echo "No records matching your query were found.";
     }
