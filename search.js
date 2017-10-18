@@ -1,21 +1,22 @@
-function submit() {
-    var x = document.getElementById("myMonth").value;
-    console.log(x);
-    var promise = $.getJSON("http://95.85.35.29/select.php");
 
-    promise.done(function(data) {
-        console.log(data);
-        // this will return back "text that needs to be in javascript"
-    })
-}
-
-
+console.log("Net voor de knop");
 $(document).ready(function(){
-    $(".submit").click(function(){
-        $.ajax({
-            url:"http://95.85.35.29/select.php",
-            success:function(result){
+    console.log("document is ready");
+    $("#bevestig").click(function(){
+        var x = $("#myMonth").val();
+        console.log(x);
+        console.log("Klik op de knop");
+        var userinput = x;
+        var year = userinput.substring(0, 4);
+        var month = userinput.substring(5);
+
+        $.post({
+            url:"select.php",
+            data: {year: year, month: month},
+            success:function(result,e){
+                console.log(result + e);
                 $("#adiv").html(result);
+
             }
         });
     });

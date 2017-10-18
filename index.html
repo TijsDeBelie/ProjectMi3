@@ -1,60 +1,90 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-    <META HTTP-EQUIV="Expires" CONTENT="-1">
-    <script src="jquery-3.2.1.min.js"></script>
-    <script src="search.js"></script>
-    <style type="text/css">
-        body {
-            background-color: #3686be;
-            color: #FFF;
-            border: 0px;
-            margin: 0px;
-            overflow: hidden;
-        }
+    <meta charset="utf-8">
 
-        .wrapper {
-            position: absolute;
-            top: 15%;
-            left: 0px;
-            right: 0px;
-            width: 100%;
-            height: auto;
-        }
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
 
-        .sammy {
-            float: left;
-            width: 100%;
-            height: auto;
-            text-align: center;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Mijn Happ</title>
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="css/my-app.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
 
-        .message {
-            float: left;
-            width: 100%;
-            height: auto;
-            font-size: 36px;
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-top: 25px;
-        }
-    </style>
+
 </head>
-
-<body>
-<div class="wrapper">
-    <div class="sammy"><img src="https://assets.digitalocean.com/other_images/sammy.png" /></div>
-    <div class="message">Select a month and a year to display your events</div>
-    <form method="post"> month and year:
-        <input type="month" id="myMonth" name="userinput" value="1997-11">
-        <input type="submit">
-    </form>
-
-    <div id="adiv"></div>
-
+<body class="theme-blue layout-dark">
+<!-- Status bar overlay for fullscreen mode-->
+<div class="statusbar-overlay"></div>
+<div class="panel-overlay"></div>
+<div class="panel panel-left panel-reveal">
+    <div class="content-block">
+        <p>Ok, hier heb je ruimte om vanalles te zetten, bvb menu-items</p>
+    </div>
 </div>
-</body>
 
+<!-- Views-->
+<div class="views">
+    <!-- Your main view, should have "view-main" class-->
+    <div class="view view-main">
+
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+            <!-- Start page index -->
+            <!-- NAAM PAGINA BEVINT ZICH HIERONDER -->
+            <div class="page" data-page="index">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="center sliding">We moeten nog een naam verzinnen</div>
+                        <div class="right">
+                            <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar toolbar-bottom">
+                    <div class="toolbar-inner"><a href="#index" data-panel="left" class="button link">Home</a><a href="#locatie" class="button link">Locatie</a></div>
+                </div>
+                <div class="page-content">
+                    <div class="content-block-title">Zoek een concert/festival</div>
+                    <div class="list-block">
+                        <div class="content-block">
+                            <div class="content-block-inner">
+                                <div class="wrapper">
+
+
+                                    <div class="message">Select a month and a year to display your events</div>
+                                    <form method="POST"> month and year:
+                                        <input type="month" id="myMonth" value="2017-11">
+
+                                    </form>
+                                    <br>
+
+                                    <a href="#" id="bevestig" class="button button-big button-round">SEARCH EVENTS</a>
+
+                                    <div id="adiv"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+<!-- Path to Framework7 Library JS-->
+<script type="text/javascript" src="js/framework7.min.js"></script>
+<!-- Path to your app js-->
+<script type="text/javascript" src="js/my-app.js"></script>
+        <script type="text/javascript" src="search.js"></script>
+</body>
 </html>
