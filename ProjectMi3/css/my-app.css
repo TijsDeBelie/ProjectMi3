@@ -1,0 +1,19 @@
+img.loadingImage {
+
+
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    left: 45%;
+
+}
+#loading {
+    display: none;
+    position: absolute;
+    left: 47%;
+    text-align: left;
+    
+}
+#LogoTitel {
+    vertical-align: text-top;
+}
