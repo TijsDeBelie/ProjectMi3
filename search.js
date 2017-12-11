@@ -586,7 +586,9 @@ $('#btnOrders').click(function() {
         data: {User: user},
         success: function (result, e) {
             result = JSON.parse(result)
+            if(result !== null){
             fillorders(result)
+            }
         }
     });
 });
@@ -737,34 +739,34 @@ const options = {
 };
 
 
-function scan()
-{
-    cordova.plugins.barcodeScanner.scan(
-        function (result) {
-            if(!result.cancelled)
-            {
-                if(result.format == "QR_CODE")
-                {
+$("#btnDiscount").click(function (){
+    qrcode.clear();
+    makeCode();
 
-                    navigator.notification.alert("You have scanned a discount code", discount, ["Thanks"], ["Great"])
-                    console.log(result);
+})
 
-                }
-            }
-        },
-        function (error) {
-            alert("Scanning failed: " + error);
-        }
-    );
-}
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width : 200,
+    height : 200
+});
 
-function discount () {
+function makeCode () {
 
-    console.log("discount function called")
 
+    qrcode.makeCode("U53994654Su");
 }
 
 
+
+$("#text").
+on("blur", function () {
+    makeCode();
+}).
+on("keydown", function (e) {
+    if (e.keyCode == 13) {
+        makeCode();
+    }
+});
 
 
 

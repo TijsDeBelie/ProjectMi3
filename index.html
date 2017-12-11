@@ -18,6 +18,8 @@
     <script src="GoogleAnalytics.js"></script>
     <script src="GoogleTagManager.js" async></script>
     <script src="js/jquery-dateFormat.js"></script>
+
+    <script type="text/javascript" src="qrcode.js"></script>
 </head>
 <style type="text/css">
     body {
@@ -40,6 +42,8 @@
         <a href="#Settings" id="btnSettings" class="button button-fill color-white panel-close" style="color: rgb(116,116,117);"><img src="img/Settings.png" class="imgSettings" width="20px"> Settings</a>
         <br>
         <a href="#Orders" id="btnOrders" class="button button-fill color-white panel-close" style="color: rgb(116,116,117);"><img src="img/Concert-Tracker_Logo.png" class="imgSettings" width="20px"> Orders</a>
+        <br>
+        <a href="#Discount" id="btnDiscount" class="button button-fill color-white panel-close" style="color: rgb(116,116,117);"><img src="img/Concert-Tracker_Logo.png" class="imgSettings" width="20px">Discount</a>
         <br>
         <input type="button" id="logout" value="Logout" class="button button-fill color-blue" /> </div>
 </div>
@@ -140,6 +144,30 @@
                     </div>
                 </div>
             </div>
+            <div data-page="Discount" class="page cached">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <a href="#login" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                        </div>
+                        <div class="center sliding"><img src="img/Concert-Tracker_Logo.png" class="LogoTitel" width="45">ConcertTracker</div>
+                    </div>
+                </div>
+                <div class="toolbar toolbar-bottom">
+                    <div class="toolbar-inner"><a href="#search" data-panel="left" class="button link">Home</a><a href="#About" class="button link">About</a></div>
+                </div>
+                <div class="page-content">
+                        <div class="content-block inset">
+                            <div class="content-block-inner">
+
+
+                                <div id="qrcodeboundary" style="background-color: white; height: 100%; margin-left: auto; margin-right: auto;">
+                                <div id="qrcode" style="position: relative; display: block; margin-left: auto; margin-right: auto; padding: 50px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div data-page="Orders" class="page cached">
                 <div class="navbar">
                     <div class="navbar-inner">
