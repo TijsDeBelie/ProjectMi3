@@ -19,6 +19,7 @@
     <script src="GoogleAnalytics.js"></script>
     <script src="GoogleTagManager.js" async></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="qrcode.js"></script>
 </head>
 <body class="theme-blue layout-dark">
 <div class="page-content">
@@ -57,16 +58,18 @@
                                             </div>
                                         </div>
                                         </div>
+                                            <div class="list-block">
+                                                <button type="submit"
+                                                        style="width: 92%; left: 4%; margin: 0;"
+                                                        class="button button-fill color-teal class="g-recaptcha"
 
-                                        <button type="submit"
-                                                style="width: 92%; left: 4%; margin: 0;",
-                                                class="button button-fill color-blue" class="g-recaptcha"
+                                                        data-sitekey="6LfK8DcUAAAAAJDvqbiNKuE0OiFeNSLEr4V2_Q_3"
+                                                        data-callback="YourOnSubmitFn">
 
-                                                data-sitekey="6LfK8DcUAAAAAJDvqbiNKuE0OiFeNSLEr4V2_Q_3"
-                                                data-callback="YourOnSubmitFn">
+                                                    Log in
+                                                </button>
+                                            </div>
 
-                                            Log in
-                                        </button>
                                         </div>
                                     </form>
                                 </div>
@@ -75,14 +78,16 @@
                     </ul>
                 </div>
                 <div class="list-block">
-                    <div class="col-25" id="loading">
 
-                        <span class="preloader preloader-white" ></span>
-                    </div>
-                    <a href="create.html" id="create" class="button button-fill color-blue" style="font-family: 'Times New Roman', Times, serif; left: 29px; width: 84%; margin-top: 1%;">Create Account</a>
+                    <a href="create.html" id="create" class="button button-fill color-teal" style="font-family: 'Times New Roman', Times, serif; width: 85%; left: 7.5%; margin: 0 7% 0 0;">Create Account</a>
                     <div class="list-block-label" id="buyTickets">
                         <p style="z-index: 2; font-family: 'Times New Roman', Times, serif;">To buy tickets you will have to be logged in!</p>
                         <p id="error" style="color: red"></p>
+
+                    </div>
+                    <div class="col-25" id="loading">
+
+                        <span class="preloader preloader-white" ></span>
                     </div>
                 </div>
             </div>

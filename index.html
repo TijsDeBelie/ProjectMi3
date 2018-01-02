@@ -23,6 +23,7 @@
 </head>
 <style type="text/css">
     body {
+        background-color: teal;
         visibility: hidden;
     }
 
@@ -37,7 +38,7 @@
 <div class="panel-overlay"></div>
 <div class="panel panel-left panel-reveal">
     <div class="content-block" id="linkerTab">
-        <div style="width: 100%"> <img src="img/tijsFoto.jpg" style="width: 80%; height: 80%" id="profielfoto"> </div>
+        <div style="width: 100%"> <img src="img/tijsFoto.jpg" style="width: 100%; height: 100%" id="profielfoto"> </div>
         <div class="Welcome"></div>
         <a href="#Settings" id="btnSettings" class="button button-fill color-white panel-close" style="color: rgb(116,116,117);"><img src="img/Settings.png" class="imgSettings" width="20px"> Settings</a>
         <br>
@@ -45,7 +46,7 @@
         <br>
         <a href="#Discount" id="btnDiscount" class="button button-fill color-white panel-close" style="color: rgb(116,116,117);"><img src="img/Concert-Tracker_Logo.png" class="imgSettings" width="20px">Discount</a>
         <br>
-        <input type="button" id="logout" value="Logout" class="button button-fill color-blue" /> </div>
+        <input type="button" id="logout" value="Logout" class="button button-fill color-teal" /> </div>
 </div>
 <!-- Views-->
 <div class="views">
@@ -59,7 +60,7 @@
                         <div class="left">
                             <a href="#login" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                         </div>
-                        <div class="center sliding"><img src="img/Concert-Tracker_Logo.png" class="LogoTitel" width="45">ConcertTracker</div>
+                        <div class="center sliding"><img src="img/Concert-Tracker_Logo.png" class="LogoTitel" width="45" >ConcertTracker</div>
                     </div>
                 </div>
                 <div class="toolbar toolbar-bottom">
@@ -85,8 +86,12 @@
                             <p><a href="#" id="close" class="close-popup">X</a></p>
                         </div>
                     </div>
-                    <div class="content-block-title"> You can search for an event, by date, by name, by place,
-                        <br>or all of those combined. <p>Click the name of an event to display further information.</p> </div>
+                    <div class="content-block-title" style="font-family: 'Times New Roman', Times, serif; font-size: 16px; "> You can search for an event by
+                        <li>date</li>
+                        <li>by name</li>
+                        <li>by place</li>
+                        <br>Or all of those combined.
+                        <p style="font-size: 16px">Click the name of an event to display further information.</p> </div>
                     <div class="list-block">
                         <ul>
                             <li>
@@ -125,14 +130,11 @@
                     <div class="toolbar-inner"><a href="#search" data-panel="left" class="button link">Home</a><a href="#About" class="button link">About</a></div>
                 </div>
                 <div class="page-content">
-                    <div class="content-block-title">
+                    <div class="content-block-title" style="font-family: 'Times New Roman', Times, serif; font-size: 20px">
                         <h2>Creators of this app <img class="imgAbout" src="img/pen.jpg" width="50"></h2></div>
                     <div class="content-block">
-                        <div class="content-block inset">
-                            <div class="content-block-inner">
-                                <h2>Tijs De Belie</h2><img class="imgAbout" src="img/tijsFoto.jpg" width="200" style="border-radius: 5%">
-                                <h2>Senne Valvekens</h2><img class="imgAbout" src="img/SenneFoto.jpg" width="200" style="border-radius: 5%">
-                                <h2>Manon Michiels</h2><img class="imgAbout" src="img/ManonFoto.jpg" width="200" style="border-radius: 5%">
+                        <div class="content-block inset" style="font-family: 'Times New Roman', Times, serif;">
+                            <div class="content-block-inner" style="font-size: 18px; opacity: 0.7; background-color: #455a64;">
                                 <p>We are three students currently studying applied informatics, whom have chosen to create a mobile app for one of our courses: mobile and internet 3.</p>
                                 <p>The app we have created has the main purpose to find and order tickets for concerts in large areas of the world, we did this because we all have a passion for music.
                                     It could become a well used app because like us there are many people interested in music
@@ -140,6 +142,11 @@
                                     When you are done finding concerts you can check all your ordered tickets in the order list, there you can also pay for them.
                                 </p>
                             </div>
+
+                                <h2>Tijs De Belie</h2><img class="imgAbout" src="img/tijsFoto.jpg" width="100" style="border-radius: 5%">
+                                <h2>Senne Valvekens</h2><img class="imgAbout" src="img/SenneFoto.jpg" width="100" style="border-radius: 5%">
+                                <h2>Manon Michiels</h2><img class="imgAbout" src="img/ManonFoto.jpg" width="100" style="border-radius: 5%">
+
                         </div>
                     </div>
                 </div>
@@ -157,12 +164,16 @@
                     <div class="toolbar-inner"><a href="#search" data-panel="left" class="button link">Home</a><a href="#About" class="button link">About</a></div>
                 </div>
                 <div class="page-content">
+
                         <div class="content-block inset">
+                            <div class="content-block-title">
+                                <h2>Discount</h2></div>
                             <div class="content-block-inner">
 
+                                <h3>We are currenty offering a 15% discount to all tickets! Scan this QR Code with your smartphone to get the discount</h3>
 
-                                <div id="qrcodeboundary" style="background-color: white; height: 100%; margin-left: auto; margin-right: auto;">
-                                <div id="qrcode" style="position: relative; display: block; margin-left: auto; margin-right: auto; padding: 50px"></div>
+                                <div id="qrcodeboundary" style="background-color: white; height: 100%; margin-left: auto; margin-right: auto; width: 300px;">
+                                <div id="qrcode" style="position: relative; display: block; margin-left: auto; margin-right: auto; padding: 50px; width: 200px;"></div>
                                 </div>
                             </div>
                         </div>

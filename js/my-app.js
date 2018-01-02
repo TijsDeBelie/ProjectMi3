@@ -212,7 +212,7 @@ function UpdateAccount(user, voornaam, familienaam, email, geboortedatum)
         url:'https://concerttracker.aenterprise.info/Account.php',
         data: {User: user, Voornaam: voornaam, Familienaam: familienaam, Email: email, Geboortedatum: geboortedatum},
         success: function(result,e){
-            $('#SaveAccount').html('Gegevens werden succesvol gewijzigd!');
+            $('#SaveAccount').html('Your info was succesfully changed!');
         }
     });
 }

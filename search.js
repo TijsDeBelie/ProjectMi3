@@ -1,14 +1,29 @@
+/**
+ * @file searching for concerts, and most of the control of the website
+ */
+
 $(document).ready(function(){
-
-    console.log("document is ready");
+    /**
+     * A main variable that can be used to put all sorts of userinput in
+     */
     var userinput;
-
+    /**
+     * The control of the site, when clicking on the different buttons
+     */
     $("#cancel").click(function(){
 
         window.location.href = "login.html";
-        //mainview.router.load("login.html")
     });
+
     $("#logout").click(function(){
+
+        /**
+         * @ajax
+         * ajax function called when a user wants to logout
+         * Destroys the current session
+         * Timeout of 3 seconds
+         */
+
         $.post({
             url: "https://concerttracker.aenterprise.info/logout.php",
             statusCode: {
@@ -21,7 +36,6 @@ $(document).ready(function(){
                 result = JSON.parse(result);
                 console.log(result);
                 if (result.loggedout == "true"){
-
                     window.location.href = "login.html";
                 } else {
                     alert("Error, you are not logged out, please try again");
@@ -32,18 +46,23 @@ $(document).ready(function(){
             }
         });
     });
-    $("#create").click(function(){
 
+    $("#create").click(function(){
         window.location.href = "create.html";
     });
     $("#create").click(function(){
-
         window.location.href = "create.html";
     });
 
 });
 
-
+/**
+ * @login
+ * When user clicks on the login button this function gets called
+ * @param {string} username - the username of the person
+ * @param {integer} password - the password of the person
+ * The username is edited, by default all special chars are removed
+ */
 $("#loginform").submit(function(e){
     e.preventDefault();
     var username = $('#username').val();
@@ -52,7 +71,9 @@ $("#loginform").submit(function(e){
     Loading();
     $.post({
         url: "https://concerttracker.aenterprise.info/login.php",
-        data: {username: username, password: password},
+        data: {
+            username: username,
+            password: password},
         statusCode: {
             500: function() {
                 alert( "No internet connection" );
@@ -79,8 +100,6 @@ $("#loginform").submit(function(e){
                 localStorage.setItem("profilepicture", result.foto);
                 $(document.body).css('visibility','visible');
                 VerbergLoading();
-
-                //mainView.router.load("index.html");
                 window.location.href = "index.html";
             } else {
                 $("#error").html(result.error);
@@ -108,12 +127,22 @@ $("#loginform").submit(function(e){
 
 
 var imagesrc;
-
+/**
+ * @Create
+ * When user clicks on the create button this function gets called
+ * @param {string} username - the username of the person
+ * @param {integer} password - the password of the person
+ * The username is edited, by default all special chars are removed, the edited username is also given to the user with a confirm box
+ */
 $("#createform").submit(function(e){
     e.preventDefault();
-
+    var re =  new RegExp(/[^\w\s]/gi);
     var usernameCreate = $("#usernameCreate").val();
-    usernameCreate = usernameCreate.replace(/[^\w\s]/gi, '')
+    if(re.test(usernameCreate)){
+        usernameCreate = usernameCreate.replace(/[^\w\s]/gi, '')
+        var r = confirm("Your username contained forbidden characters and has been modified to: " + usernameCreate)
+    }
+
     var password1 = $("#password1").val();
     var password2 = $("#password2").val();
 
@@ -121,6 +150,24 @@ $("#createform").submit(function(e){
     $.post({
         url: "https://concerttracker.aenterprise.info/create.php",
         data: {usernameCreate: usernameCreate, password1: password1, password2: password2},
+        statusCode: {
+            500: function() {
+                alert( "No internet connection" );
+            },
+            501: function() {
+                alert( "No internet connection" );
+            },
+            502: function() {
+                alert( "No internet connection" );
+            },
+            503: function() {
+                alert( "No internet connection" );
+            },
+            400: function() {
+                alert( "bad request" );
+            }
+        },
+        timeout:3000,
         success: function (result, e) {
 
             result = JSON.parse(result)
@@ -152,63 +199,33 @@ function VerbergLoading() {
 
 
 
-/*function SearchByDate(){
 
-    console.log("SearchbyDate");
-    userinput = $("#myMonth").val();
-    console.log(userinput);
-
-    var start = userinput.substring(0, 11);
-    var end = userinput.substring(13);
-
-    console.log(start);
-    console.log(end);
-
-    Loading();
-    $.post({
-        url: "https://concerttracker.aenterprise.info/selectbydate.php",
-        data: {start: start, end: end},
-        success: function (result, e) {
-            console.log(result + e);
-            $("#adiv").html(result);
-            VerbergLoading();
-        }
-    });
-
-
-}
-
-function SearchByName() {
-
-    console.log("Searchbyname");
-    userinput = $("#myText").val();
-    var name = userinput;
-
-    Loading();
-    $.post({
-        url: "https://concerttracker.aenterprise.info/selectbyname.php",
-        data: {name: name},
-        success: function (result, e) {
-            console.log(result + e);
-            $("#adiv").html(result);
-            VerbergLoading();
-        }
-    });
-
-
-}*/
 
 //OM DE LINKEN IN DE ONDERSTAANDE URL KORTER TE HOUDEN WORDT HIER AL DE BASEURL EN APIKEY GEZET
 var apikey = "&apikey=91266liFMYink0pu2zFqYCT9yQ3zOYHT";
 var baseurl = "https://app.ticketmaster.com/discovery/v2/events.json?&classificationName=music&sort=date,asc";
 var url = baseurl + apikey + "&classificationName=music";
 var page = 0;
+
+/**
+ * @pages
+ * When user clicks on the prev button this function gets called
+ * @param {integer} page - the current page
+ * @param {string} url - the url of the json source
+ * The new page is loaded with the function search
+ */
 $('#prev').click(function() {
 
 
     Search(--page, url);
 });
-
+/**
+ * @pages
+ * When user clicks on the next button this function gets called
+ * @param {integer} page - the current page
+ * @param {string} url - the url of the json source
+ * The new page is loaded with the function search
+ */
 $('#next').click(function() {
     Search(++page, url);
 });
@@ -216,72 +233,91 @@ $('#next').click(function() {
 
 
 
-
+/**
+ * @search
+ * When user clicks on the confirm button this function gets called
+ * this function checks what fields are filled in and edits the url to match the requirements the user has filled in
+ * pagenumber gets reset to 0
+ */
 $("#bevestig").click(function(){
     page = 0;
 
     $("#adiv").html("");
 
+    var month = $("#myMonth").val();
+    if(month !== ""){
 
+        month += "T00:00:00Z"
+    }
+    var Text = $("#myText").val();
+    var Place = $("#myPlace").val();
+
+    url = baseurl + apikey + "&startDateTime=" + month + "&keyword=" + Text + "&countryCode=" + Place;
+/*
     if ($("#myMonth").val() !== "" && $("#myText").val() !== "" && $("#myPlace").val() !== "") {
         //DATUM + TEKST + PLAATS
         userinput = $("#myMonth").val();
         var userinput1 = $("#myText").val();
         var userinput2 = $("#myPlace").val();
         url =  baseurl + apikey + "&startDateTime=" + userinput +"T00:00:00Z&keyword=" + userinput1 + "&countryCode=" + userinput2
-        Search(page, url);
 
     } else if ($("#myMonth").val() !== "" && $("#myText").val() !== "") {
         //DATUM + TEKST
         userinput = $("#myMonth").val();
         var userinput1 = $("#myText").val();
         url = baseurl + apikey + "&startDateTime=" + userinput + "T00:00:00Z&keyword=" + userinput1
-        Search(page, url);
 
     } else if ($("#myMonth").val() !== "" && $("#myPlace").val() !== "") {
         //DATUM + PLAATS
         userinput = $("#myMonth").val();
         var userinput1 = $("#myPlace").val();
         url = baseurl + apikey + "&startDateTime=" + userinput + "T00:00:00Z&radius=100&countryCode=" + userinput1
-        Search(page, url);
 
     } else if ($("#myText").val() !== "" && $("#myPlace").val() !== "") {
         //TEKST + PLAATS
         userinput = $("#myText").val();
         var userinput1 = $("#myPlace").val();
         url = baseurl + apikey + "&keyword=" + userinput + "&radius=100&&countryCode=" + userinput1
-        Search(page, url);
 
     }else if ($("#myMonth").val() !== ""){
         //DATUM
         userinput = $("#myMonth").val();
         url = baseurl + apikey + "&startDateTime=" + userinput +"T00:00:00Z";
-        Search(page, url);
 
     } else if ($("#myText").val() !== ""){
         //TEKST
         userinput = $("#myText").val();
         url = baseurl + apikey +  "&keyword=" + userinput
-        Search(page, url);
+
     }
     else if ($("#myPlace").val() !== ""){
         //PLAATS
         userinput = $("#myPlace").val();
         url = baseurl + apikey + "&radius=100&countryCode=" + userinput
-        Search(page, url);
+
     }else {
         $('#next').prop("disabled", false);
     
 
             url = baseurl + apikey;
-            Search(page, url);
+
 
     }
-
-
+*/
+    Search(page, url);
 });
 
-
+/**
+ * @order
+ * When user clicks on the order button this function gets called
+ * @param {string} user - the name of the user ordering the ticket(s)
+ * @param {string} EventName - the name of the event
+ * @param {date} EventDate - the date the event is held
+ * @param {string} EventPlace - the location the event is held
+ * @param {double} Price - the price of  the event, in case no price is supplied by ticketmaster the price is set to 50$
+ * @param {integer} Amount - How many tickets the user has selected to order
+ * this function adds the selected ticket and amount to the list of orders to be reviewed later
+ */
 
 var Amount;
 function Ordertickets(User, EventName, EventDate, EventPlace, Price, Amount) {
@@ -349,7 +385,7 @@ function Search(pageNumber, Link){
                 if (json.page.totalElements === 0) {
                     var tr = table.insertRow(-1);
                     var tabCell1 = tr.insertCell(-1);
-                    tabCell1.innerHTML = "No events found,maybe your search was too specified";
+                    tabCell1.innerHTML = "No events found, we do not yet know of any events that you requested";
                     $('#prev').hide();
                     $('#next').hide();
                 } else {
@@ -740,10 +776,15 @@ const options = {
 
 
 $("#btnDiscount").click(function (){
-    qrcode.clear();
+
     makeCode();
 
 })
+
+
+if(document.getElementById("qrcode")){
+
+
 
 var qrcode = new QRCode(document.getElementById("qrcode"), {
     width : 200,
@@ -752,7 +793,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 
 function makeCode () {
 
-
+    qrcode.clear();
     qrcode.makeCode("U53994654Su");
 }
 
@@ -768,5 +809,5 @@ on("keydown", function (e) {
     }
 });
 
-
+}
 

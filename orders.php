@@ -7,7 +7,7 @@ include('config.php');
 
 $user = $_POST["User"];
 
-$sql ="Select `EVENTNAME`,`AMOUNT`,`PRICE` from `Tickets` WHERE `USER` = '$user'";
+$sql ="Select `EVENTNAME`,`AMOUNT`,`PRICE`, `DATE`, `Event_Foto`  from `Tickets` WHERE `USER` = '$user'";
 
 
 $result = mysqli_query($db,$sql);

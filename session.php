@@ -5,7 +5,7 @@
    $user_check = $_SESSION['login_user'];
 
 
-   $ses_sql = mysqli_query($db,"select username, Thema, Voornaam, Familienaam, Geboortedatum, Email from User_info where username = '$user_check' ");
+   $ses_sql = mysqli_query($db,"select username, Thema, Voornaam, Familienaam, Geboortedatum, Email, Discount from User_info where username = '$user_check' ");
 
    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
 
@@ -17,6 +17,7 @@
     $response["Familienaam"] = $row['Familienaam'];
     $response["Email"] = $row['Email'];
     $response["Geboortedatum"] = $row['Geboortedatum'];
+    $response["Discount"] = $row["Discount"];
     $login_session = $row['username'];
 
 
